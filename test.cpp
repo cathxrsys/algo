@@ -4,11 +4,10 @@
 #include <cstdlib>
 
 #include "binarysearch.h"
-
+#include "choicesort.h"
 
 
 TEST(BinarySearchTest, BasicAssertions) {
-
     std::vector<uint32_t> nums;
     nums.resize(1 << 20);
 
@@ -31,6 +30,16 @@ TEST(BinarySearchTest, BasicAssertions) {
     EXPECT_EQ(bs::binary_search(nums, 10000), 10000);
     EXPECT_EQ(bs::binary_search(nums, 1000000), 1000000);
     EXPECT_EQ(bs::binary_search(nums, 5000000), std::nullopt);
+}
+
+TEST(ChoiceSortTest, BasicAssertions) {
+    std::vector<uint32_t> nums{1, 7, 3, 0, 19, 347, 3435, 22, 7234, 346, 10, 11, 63, 33};
+    std::vector<uint32_t> nums_sorted = nums;
+    std::sort(nums_sorted.begin(), nums_sorted.end());
+
+    std::vector<uint32_t> nums_mysorted = choicesort::sort(nums);
+
+    EXPECT_EQ(nums_mysorted, nums_sorted);
 }
 
 
